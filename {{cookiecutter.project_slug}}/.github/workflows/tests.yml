@@ -20,8 +20,12 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
-        python-version: ["3.9", "3.10", "3.11"]
+        os: ["ubuntu-latest"]
+        python-version: [
+          {%- for version in cookiecutter._all_python_versions
+                if (version.split('.')|map('int')|list) >= (cookiecutter.target_python_version.split('.')|map('int')|list) -%}
+          "{{ version }}"{% if not loop.last %}, {% endif %}
+          {%- endfor %}]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python {% raw %}${{ matrix.python_version }}{% endraw %}
@@ -33,9 +37,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install hatch pre-commit
           hatch env create
-      - name: Lint and typecheck
+      - name: Lint
         run: |
-          hatch run lint:all
+          hatch run lint
+      - name: Typecheck
+        run: |
+          hatch run typecheck
       - name: Run Tests
         run: |
-          hatch run test:pytest
+          hatch run cov

@@ -24,11 +24,12 @@ jobs:
           hatch env create
       - name: Lint and typecheck
         run: |
-          hatch run lint:all
+          hatch run lint
+          hatch run typecheck
       - name: Run Tests
         run: |
-          hatch run test:pytest
-      - uses: codecov/codecov-action@v4
+          hatch run cov-cicd
+      - uses: codecov/codecov-action@v5
         with:
           token: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
           fail_ci_if_error: true
@@ -57,19 +58,10 @@ jobs:
       - name: Build
         run: |
           hatch build
-      - name: Publish 📦 to Test PyPI
-        if: startsWith(github.ref, 'refs/heads/main')
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          skip_existing: true
-          user: __token__
-          password: {% raw %}${{ secrets.TEST_PYPI_SECRECT }}{% endraw %}
-          packages-dir: dist/
-          repository-url: https://test.pypi.org/legacy/
-      - name: Publish 📦 to PyPI
-        if: startsWith(github.ref, 'refs/heads/main')
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: {% raw %}${{ secrets.PYPI_SECRECT }}{% endraw %}
-          packages-dir: dist/
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          HATCH_INDEX_USER: ___token___
+          HATCH_INDEX_AUTH: {% raw %}${{ secrets.PYPI_API_TOKEN }}{% endraw %}
+        run: |
+          hatch publish

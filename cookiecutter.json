@@ -5,11 +5,19 @@
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
   "pkg_name": "{{ cookiecutter.project_slug.replace('-', '_').replace('.', '_') }}",
   "project_short_description": "Python project featuring the modern and extensible Python project manager hatch.",
-  "open_source_license": ["MIT", "BSD-3-Clause", "ISC", "Apache-2.0", "GPL-3.0-only", "proprietary"],
+  "open_source_license": [
+    "MIT",
+    "BSD-3-Clause",
+    "ISC",
+    "Apache-2.0",
+    "GPL-3.0-only",
+    "proprietary"
+  ],
   "target_python_version": ["3.10", "3.9", "3.11", "3.12", "3.13"],
   "github_username": "{{ cookiecutter.full_name.replace(' ', '')}}",
   "project_repo": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
   "pypi_username": "{{ cookiecutter.github_username }}",
+  "_all_python_versions": ["3.9", "3.10", "3.11", "3.12", "3.13"],
   "lock_file_support": false,
   "__prompts__": {
     "full_name": "Provide your [bold yellow]full name[/]",

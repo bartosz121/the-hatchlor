@@ -42,9 +42,9 @@ jobs:
     - name: Test some general hatch commands
       working-directory: ./hatchlor-demo
       run: |
-        hatch run fibonacci 10
-        hatch run test:cov
-        hatch run lint:all
+        hatch run cov
+        hatch run lint
+        hatch run typecheck
         hatch run pre-commit run --all-files
 
     - name: Build the package
@@ -56,5 +56,5 @@ jobs:
       working-directory: ./hatchlor-demo
       run: |
           hatch run upgrade-all
-          hatch run test:upgrade-all
-          hatch run test:upgrade-pkg pytest
+          hatch run upgrade-all
+          hatch run upgrade-pkg pytest

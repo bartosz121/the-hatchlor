@@ -19,9 +19,9 @@ hatch build
 hatch clean
 hatch version
 
-hatch run fibonacci 10
-hatch run test:cov
-hatch run lint:all
+hatch run cov
+hatch run lint
+hatch run typecheck
 hatch run docs:build
 
 hatch run pre-commit run --all-files

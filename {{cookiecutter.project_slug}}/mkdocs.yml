@@ -8,7 +8,7 @@ copyright: 'Copyright &copy; {{ cookiecutter.full_name }} {% now 'local', '%Y' %
 # Repository
 repo_name: {{ cookiecutter.project_slug }}
 repo_url: {{ cookiecutter.project_repo }}
-edit_uri: blob/master/docs
+edit_uri: blob/main/docs
 
 # Navigation
 nav:

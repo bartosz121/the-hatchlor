@@ -47,24 +47,23 @@ jobs:
     - name: Test some hatch commands
       working-directory: ./hatchlor-demo
       run: |
-        hatch run fibonacci 10
-        hatch run test:cov
-        hatch run lint:all
+        hatch run cov
+        hatch run lint
         hatch run pre-commit run --all-files
 
     - name: Remove git repo for next step
       working-directory: ./hatchlor-demo
       run: rm -rf .git
 
-    - name: Push to the-hatchlor-demo
+    - name: Push to the-hatchlor-demo-bartosz121
       uses: cpina/github-action-push-to-another-repository@devel
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source-directory: "hatchlor-demo/"
-        destination-github-username: "FlorianWilhelm"
-        destination-repository-username: "FlorianWilhelm"
-        destination-repository-name: "the-hatchlor-demo"
-        user-email: florian.wilhelm@gmail.com
+        destination-github-username: "bartosz121"
+        destination-repository-username: "bartosz121"
+        destination-repository-name: "the-hatchlor-demo-bartosz121"
+        user-email: "admin@bartoszmagiera.dev"
         commit-message: "Initial commit"
         target-branch: main
