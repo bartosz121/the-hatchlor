@@ -32,8 +32,8 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 
-dependencies = []
 dynamic = ["version"]
+dependencies = []
 
 [project.urls]
 # important URLs for this project
