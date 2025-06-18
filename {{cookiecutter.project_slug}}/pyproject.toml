@@ -295,10 +295,9 @@ build-check = [
     "validate",
 ]
 
-# Test matrix for various Python versions replacing the functionality of tox
-[[tool.hatch.envs.test.matrix]]
+[[tool.hatch.envs.hatch-test.matrix]]
 python = [
 {%- for version in cookiecutter._all_python_versions
       if (version.split('.')|map('int')|list) >= (cookiecutter.target_python_version.split('.')|map('int')|list) -%}
-    "{{ version | replace('.', '') }}"{% if not loop.last %},{% endif %}
+    "{{ version }}"{% if not loop.last %},{% endif %}
 {%- endfor %}]
