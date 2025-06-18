@@ -295,6 +295,9 @@ build-check = [
     "validate",
 ]
 
+[tool.hatch.envs.hatch-test]
+template = 'default'
+
 [[tool.hatch.envs.hatch-test.matrix]]
 python = [
 {%- for version in cookiecutter._all_python_versions
