@@ -26,9 +26,10 @@ authors = [
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
+{%- for version in cookiecutter._all_python_versions
+      if (version.split('.')|map('int')|list) >= (cookiecutter.target_python_version.split('.')|map('int')|list) %}
+    "Programming Language :: Python :: {{ version }}",
+{%- endfor %}
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 
@@ -36,8 +37,6 @@ dynamic = ["version"]
 dependencies = []
 
 [project.urls]
-# important URLs for this project
-# ToDo: Modify according to your needs!
 Documentation = "{{ cookiecutter.project_repo }}"
 Source = "{{ cookiecutter.project_repo }}"
 Tracker = "{{ cookiecutter.project_repo }}/issues"
@@ -61,6 +60,9 @@ version-file = "src/{{ cookiecutter.pkg_name }}/_version.py"
 packages = ["src/{{ cookiecutter.pkg_name }}"]
 
 [tool.hatch.build.targets.sdist]
+include = [
+    "_version.py"
+]
 exclude = [
     "/.github",
     "/.hatch"

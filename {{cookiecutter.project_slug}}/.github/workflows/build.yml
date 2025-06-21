@@ -60,8 +60,11 @@ jobs:
           hatch build
       - name: Publish to PyPI
         if: startsWith(github.ref, 'refs/tags/')
-        env:
-          HATCH_INDEX_USER: ___token___
-          HATCH_INDEX_AUTH: {% raw %}${{ secrets.PYPI_API_TOKEN }}{% endraw %}
-        run: |
-          hatch publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          draft: true
+          body: {% raw %}${{ github.event.head_commit.message }}{% endraw %}
+          artifacts: dist/*.whl,dist/*.tar.gz
+          token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
