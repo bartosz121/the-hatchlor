@@ -96,6 +96,14 @@ This often provides additional considerations and avoids unnecessary work.
    hatch env create
    ```
 
+6. Install pre-commit hooks
+
+   ```console
+   hatch run pre-commit install
+   ```
+
+   This sets up [pre-commit] to automatically run code quality checks before each commit.
+
 ### Implement your changes
 
 1. Create a branch to hold your changes:
