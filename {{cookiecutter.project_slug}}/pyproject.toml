@@ -27,7 +27,7 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Programming Language :: Python",
 {%- for version in cookiecutter._all_python_versions
-      if (version.split('.')|map('int')|list) >= (cookiecutter.target_python_version.split('.')|map('int')|list) %}
+      if (version.rstrip('t').split('.')|map('int')|list) >= (cookiecutter.target_python_version.rstrip('t').split('.')|map('int')|list) and 't' not in version %}
     "Programming Language :: Python :: {{ version }}",
 {%- endfor %}
     "Programming Language :: Python :: Implementation :: CPython",
@@ -303,6 +303,6 @@ template = 'default'
 [[tool.hatch.envs.hatch-test.matrix]]
 python = [
 {%- for version in cookiecutter._all_python_versions
-      if (version.split('.')|map('int')|list) >= (cookiecutter.target_python_version.split('.')|map('int')|list) -%}
+      if (version.rstrip('t').split('.')|map('int')|list) >= (cookiecutter.target_python_version.rstrip('t').split('.')|map('int')|list) -%}
     "{{ version }}"{% if not loop.last %},{% endif %}
 {%- endfor %}]
