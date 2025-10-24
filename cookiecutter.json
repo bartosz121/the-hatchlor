@@ -13,11 +13,11 @@
     "GPL-3.0-only",
     "proprietary"
   ],
-  "target_python_version": ["3.10", "3.9", "3.11", "3.12", "3.13"],
+  "target_python_version": ["3.10", "3.9", "3.11", "3.12", "3.13", "3.14", "3.14t"],
   "github_username": "{{ cookiecutter.full_name.replace(' ', '')}}",
   "project_repo": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
   "pypi_username": "{{ cookiecutter.github_username }}",
-  "_all_python_versions": ["3.9", "3.10", "3.11", "3.12", "3.13"],
+  "_all_python_versions": ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "3.14t"],
   "lock_file_support": false,
   "__prompts__": {
     "full_name": "Provide your [bold yellow]full name[/]",

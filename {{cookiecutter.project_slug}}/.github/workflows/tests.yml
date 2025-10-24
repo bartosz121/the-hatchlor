@@ -23,7 +23,7 @@ jobs:
         os: ["ubuntu-latest"]
         python-version: [
           {%- for version in cookiecutter._all_python_versions
-                if (version.split('.')|map('int')|list) >= (cookiecutter.target_python_version.split('.')|map('int')|list) -%}
+                if (version.rstrip('t').split('.')|map('int')|list) >= (cookiecutter.target_python_version.rstrip('t').split('.')|map('int')|list) -%}
           "{{ version }}"{% if not loop.last %}, {% endif %}
           {%- endfor %}]
     steps:
