@@ -222,6 +222,7 @@ pip-compile-hashes = false  # no hashes in lock files
 {%- endif %}
 dependencies = [
     "ruff",
+    "pre-commit>=4.3.0,<5",
     "pyright",
     "coverage[toml]>=6.2",
     "pytest",
