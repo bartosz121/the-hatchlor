@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python {% raw %}${{ matrix.python_version }}{% endraw %}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: {% raw %}${{ matrix.python_version }}{% endraw %}
       - name: Install dependencies
