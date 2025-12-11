@@ -235,8 +235,8 @@ dependencies = [
 ]
 
 [tool.hatch.envs.default.scripts]
-cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/{{ cookiecutter.pkg_name }} --cov=tests {args}"
-cov-cicd = "pytest --cov --cov-branch --cov-report=xml --cov-config=pyproject.toml --cov=src/{{ cookiecutter.pkg_name }} --cov=tests {args}"
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/{{ cookiecutter.pkg_name }} {args}"
+cov-cicd = "pytest --cov --cov-branch --cov-report=xml --cov-config=pyproject.toml --cov=src/{{ cookiecutter.pkg_name }} {args}"
 no-cov = "cov --no-cov {args}"
 typecheck = [
     "echo \"VERSION: `pyright --version`\"",
